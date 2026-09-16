@@ -18,8 +18,6 @@
     "github": "https://github.com/abolfazlkeshavarz",
     "cvUrl": "/resume.pdf",
     "portrait": "/images/portrait.jpg",
-    "aboutImage": "/images/about.jpg",
-    "aboutImageCaption": "Rasht, Iran — bench, boards and a server rack that doubles as a lab.",
     "aboutParagraphs": [
       "I'm a Computer Science graduate from the University of Guilan and a software/IT engineer who works across the full depth of a system — embedded hardware and networking at the bottom, backend services and databases in the middle, web interfaces and deployment on top.",
       "Most of what I build ends up in someone's hands: a production GPS-tracking platform for vehicles, a warranty system for a home-appliance business, a face-recognition attendance kiosk for a factory floor, a gym management system running in Persian. Alongside that, two years teaching programming to roughly 150 students and a digital-twin research review.",

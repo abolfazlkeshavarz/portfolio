@@ -19,11 +19,8 @@ export type Profile = {
   github: string;
   linkedin?: string;
   cvUrl?: string;
-  /** Square-ish portrait for the hero. */
+  /** 4:5 portrait for the hero card. */
   portrait: string;
-  /** Wider, more editorial shot for the profile panel. */
-  aboutImage: string;
-  aboutImageCaption?: string;
   aboutParagraphs: string[];
   tags: string[];
 };
