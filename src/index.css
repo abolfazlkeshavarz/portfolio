@@ -1,0 +1,223 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #0b0f16;
+  --color-surface: #121822;
+  --color-surface-2: #1a212c;
+  --color-surface-3: #0e131b;
+  --color-edge: #26313f;
+  --color-edge-soft: #1c2530;
+  --color-ink: #dce4ec;
+  --color-ink-dim: #8592a3;
+  --color-ink-faint: #5a6472;
+  --color-signal: #ffb454;
+  --color-cool: #5fd0c4;
+  --color-good: #5fd97a;
+  --color-crit: #ff6b6b;
+
+  --font-mono: 'IBM Plex Mono', SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  --font-sans: 'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Also paints the overscroll area and darkens native scrollbars/form UI —
+       without it the scrollbar track sits light against the dark page. */
+    background-color: var(--color-bg);
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-signal) 25%, transparent);
+    color: var(--color-signal);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  /* ---- 3D scene primitives -------------------------------------------
+     Every card sits inside a perspective viewport and is itself a 3D
+     container, so its inner layers can be pushed apart along Z. The tilt
+     angles come from useTilt as CSS variables, which keeps the per-frame
+     mouse work off React's render path. */
+  .scene {
+    perspective: 1100px;
+    perspective-origin: 50% 50%;
+  }
+
+  .card3d {
+    --rx: 0deg;
+    --ry: 0deg;
+    --lift: 0px;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rx)) rotateY(var(--ry)) translateZ(var(--lift));
+    transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 400ms ease;
+    will-change: transform;
+  }
+
+  .card3d[data-tilting='true'] {
+    /* While the pointer drives it, drop the easing so it tracks 1:1. */
+    transition: box-shadow 400ms ease;
+    box-shadow:
+      0 30px 60px -20px rgb(0 0 0 / 0.75),
+      0 0 0 1px color-mix(in srgb, var(--color-cool) 22%, transparent);
+  }
+
+  /* Depth layers. Children opt into distance from the card's surface. */
+  .depth-1 {
+    transform: translateZ(18px);
+  }
+  .depth-2 {
+    transform: translateZ(36px);
+  }
+  .depth-3 {
+    transform: translateZ(58px);
+  }
+
+  /* A specular sheen that moves opposite the tilt, which is what actually
+     sells the surface as a physical panel rather than a rotated rectangle. */
+  .sheen {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(
+      600px circle at var(--mx, 50%) var(--my, 0%),
+      color-mix(in srgb, var(--color-cool) 12%, transparent),
+      transparent 45%
+    );
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+
+  .card3d[data-tilting='true'] .sheen {
+    opacity: 1;
+  }
+
+  .panel {
+    border: 1px solid var(--color-edge);
+    border-radius: 6px;
+    background-color: var(--color-surface);
+    position: relative;
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1.125rem;
+    background-color: var(--color-surface-2);
+    border-bottom: 1px solid var(--color-edge);
+    border-radius: 6px 6px 0 0;
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-dim);
+  }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 0.3rem 0.625rem;
+    border-radius: 3px;
+    background-color: var(--color-surface-3);
+    border: 1px solid var(--color-edge);
+    color: var(--color-ink);
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    padding: 0.625rem 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--color-edge);
+    color: var(--color-ink);
+    background-color: var(--color-surface);
+    transition:
+      border-color 0.15s,
+      color 0.15s;
+  }
+
+  .btn:hover {
+    border-color: var(--color-signal);
+    color: var(--color-signal);
+  }
+
+  .btn-primary {
+    background-color: var(--color-signal);
+    border-color: var(--color-signal);
+    color: #1a1206;
+    font-weight: 600;
+  }
+
+  .btn-primary:hover {
+    color: #1a1206;
+    opacity: 0.9;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .card3d,
+  .sheen {
+    transition: none;
+  }
+
+  .animate-pulse-dot,
+  .animate-blink {
+    animation: none;
+  }
+}

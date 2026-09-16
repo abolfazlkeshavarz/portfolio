@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-image
+.git
+.gitignore
+.env
+*.tar.gz
+*.log
+.vscode
+.idea
+README.md

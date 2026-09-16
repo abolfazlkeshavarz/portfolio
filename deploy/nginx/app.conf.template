@@ -1,0 +1,57 @@
+# HOST nginx vhost for this project. Rendered by scripts/deploy-host-nginx.sh
+# with envsubst (${DOMAIN}, ${APP_HTTP_PORT}) and installed as
+# /etc/nginx/sites-available/${DOMAIN}.conf.
+#
+# One vhost per project on this server; each proxies to its own container's
+# localhost-only port, so several sites share ports 80/443 without collision.
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ${DOMAIN};
+
+    # Left open on port 80 so certbot can renew without a downtime window.
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        default_type "text/plain";
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
+    server_name ${DOMAIN};
+
+    ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
+    ssl_session_timeout 1d;
+    ssl_session_cache shared:PortfolioSSL:10m;
+    ssl_session_tickets off;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers off;
+
+    include /etc/nginx/snippets/portfolio-security-headers.conf;
+
+    access_log /var/log/nginx/${DOMAIN}.access.log;
+    error_log  /var/log/nginx/${DOMAIN}.error.log;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+        default_type "text/plain";
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:${APP_HTTP_PORT};
+        proxy_http_version 1.1;
+        proxy_set_header Host              $host;
+        proxy_set_header X-Real-IP         $remote_addr;
+        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 60s;
+    }
+}
