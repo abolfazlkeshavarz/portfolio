@@ -7,7 +7,8 @@
     "accent": "complete systems",
     "lede": "Backend services, Linux infrastructure, IoT hardware, and the networks that connect them. RadGard, a production vehicle GPS platform, was built solo end to end — tracker firmware to fleet dashboard.",
     "terminalCmd": "whoami --systems",
-    "location": "Rasht, IR",
+    "location": "Qazvin, IR",
+    "journey": "Qazvin, Iran → Genoa, Italy (MSc, 2026)",
     "stats": [
       { "value": "16.35", "unit": "/20", "label": "BSc GPA" },
       { "value": "150", "unit": "+", "label": "Students taught" },

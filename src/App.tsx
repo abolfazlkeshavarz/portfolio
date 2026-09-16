@@ -37,9 +37,8 @@ export function App() {
         <ContactPanel profile={profile} />
       </main>
 
-      <footer className="mx-auto flex max-w-[1080px] flex-wrap items-center justify-between gap-2 border-t border-edge-soft px-6 pb-12 pt-7 font-mono text-[0.7rem] text-ink-faint">
-        <span>© {new Date().getFullYear()} {profile.name}</span>
-        <span>Built with React, Tailwind and three.js</span>
+      <footer className="mx-auto max-w-[1080px] border-t border-edge-soft px-6 pb-12 pt-7 font-mono text-[0.7rem] text-ink-faint">
+        © {new Date().getFullYear()} {profile.name}
       </footer>
     </>
   );

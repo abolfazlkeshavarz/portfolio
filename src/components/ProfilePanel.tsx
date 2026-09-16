@@ -3,7 +3,7 @@ import { Panel } from './Panel';
 
 export function ProfilePanel({ profile }: { profile: Profile }) {
   return (
-    <Panel id="profile" index="01" title="Profile" meta="Rasht, Iran → Genoa, Italy (MSc, 2026)">
+    <Panel id="profile" index="01" title="Profile" meta={profile.journey}>
       <div className="max-w-[68ch]">
         {profile.aboutParagraphs.map((paragraph) => (
           <p key={paragraph.slice(0, 40)} className="mb-3.5 text-[0.97rem] leading-[1.75] text-ink-dim last:mb-0">

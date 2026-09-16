@@ -13,7 +13,10 @@ export type Profile = {
   accent: string;
   lede: string;
   terminalCmd: string;
+  /** Short city label in the top bar. */
   location: string;
+  /** Where you are and where you're heading, shown on the Profile panel. */
+  journey?: string;
   stats: Stat[];
   email: string;
   github: string;

@@ -49,9 +49,15 @@ or a missing field fails the build rather than silently rendering nothing.
 Two ways to edit it:
 
 1. **Directly** — open the JSON, change it, rebuild.
-2. **Through the Console Content Manager** — the admin panel published as a
-   Claude Artifact. Edit items there, hit **Export → Download content.json**,
-   and drop the file over `src/content/content.json`.
+2. **Through the Console Content Manager** — a private admin panel published
+   as a Claude Artifact (<https://claude.ai/artifact/WXHVtKRx5bT4bPiuAVQFr6>).
+   Its fields mirror `src/types.ts`. Edit items there, open
+   **Import / Export → Download content.json**, and drop the file over
+   `src/content/content.json`. If you edit the JSON by hand instead, use
+   **Choose content.json…** on the same tab to load it back into the panel so
+   the two don't drift apart.
+
+   If you add a field to `src/types.ts`, add it to the panel's schema too.
 
 Content changes require a rebuild (`make deploy`, or `npm run build` locally) —
 the JSON is compiled into the bundle so the page paints instantly with no
