@@ -1,8 +1,7 @@
 # Portfolio — Abolfazl Keshavarz
 
-A personal portfolio built as a **systems console**: a dark, instrument-like
-interface where every section is a panel and every item is a physical card you
-can tilt in 3D, with a WebGL node-network behind the hero.
+A personal academic portfolio: a calm, paper-toned single page with serif
+headings, a CV-style section layout, and selected research and projects.
 
 Static site — React + TypeScript + Tailwind, built by Vite, served by nginx in a
 container. No database, no backend process in production.
@@ -36,15 +35,13 @@ or a missing field fails the build rather than silently rendering nothing.
 
 | Section on the page | Key in `content.json` |
 | ------------------- | --------------------- |
-| Hero + stat tiles   | `profile`             |
-| Profile panel       | `profile.aboutParagraphs`, `profile.tags` |
-| Stack               | `skills[]`            |
-| Featured system     | the `projects[]` entry with `"featured": true` |
-| Telemetry readout   | `featuredTelemetry[]` |
-| Other systems       | remaining `projects[]` |
-| Experience & research | `experience[]`      |
+| Intro, About, Research interests | `profile` |
 | Education           | `education[]`         |
-| Connect             | `profile.email`, `.github`, `.linkedin`, `.cvUrl` |
+| Research            | `research[]`          |
+| Selected projects   | `projects[]` (`"featured": true` gets the full write-up) |
+| Teaching & experience | `experience[]`      |
+| Skills & certificates | `skills[]`, `certifications[]`, `languages[]` |
+| Contact             | `profile.email`, `.github`, `.linkedin`, `.cvUrl` |
 
 Two ways to edit it:
 
@@ -153,34 +150,10 @@ make deploy
 src/
   content/content.json     all page copy and data — the only file you edit to update the site
   types.ts                 the shape content.json must satisfy
-  components/
-    NodeField.tsx          three.js node network behind the hero
-    TiltCard.tsx           3D tilt wrapper used by every card
-    Panel.tsx              shared panel chrome
-    Hero.tsx ... ContactPanel.tsx
-  hooks/
-    useTilt.ts             pointer → CSS custom properties, no per-frame React renders
-    usePrefersReducedMotion.ts
+  components/              one component per section (Intro, About, Education, ...)
 deploy/nginx/
   site.conf                nginx config inside the container (static file serving)
   app.conf.template        host vhost, rendered per-domain by deploy-host-nginx.sh
   security-headers.conf    HSTS/CSP snippet installed on the host
 scripts/                   setup, bootstrap, image build/load, nginx+TLS
 ```
-
----
-
-## How the 3D works
-
-- `useTilt` writes rotation angles to CSS custom properties (`--rx`, `--ry`,
-  `--lift`) straight on the DOM node. React never re-renders during a tilt.
-- `.card3d` applies `transform-style: preserve-3d`, so `.depth-1/2/3` children
-  sit at real distances above the card surface — text and badges separate from
-  the panel as it turns, instead of the whole thing rotating as a flat image.
-- A pointer-tracked `.sheen` gradient moves across the surface to sell it as
-  physical material.
-- `NodeField` lazy-imports three.js after first paint, caps the device pixel
-  ratio at 2, and stops its render loop when the tab is hidden or the hero
-  scrolls out of view.
-- Everything above is disabled under `prefers-reduced-motion: reduce` — the node
-  field renders a single static frame and cards stop tilting.

@@ -1,62 +1,49 @@
-export type Stat = {
-  value: string;
-  unit?: string;
-  label: string;
-};
-
 export type Profile = {
   name: string;
   role: string;
-  eyebrow: string;
   headline: string;
-  /** Substring of `headline` rendered in the signal colour. */
-  accent: string;
   lede: string;
-  terminalCmd: string;
-  /** Short city label in the top bar. */
+  /** Short city label shown under the name. */
   location: string;
-  /** Where you are and where you're heading, shown on the Profile panel. */
-  journey?: string;
-  stats: Stat[];
   email: string;
   github: string;
   linkedin?: string;
   cvUrl?: string;
-  /** 4:5 portrait for the hero card. */
+  /** 4:5 portrait shown beside the introduction. */
   portrait: string;
   aboutParagraphs: string[];
-  tags: string[];
+  researchInterests: string[];
 };
 
-export type SkillLayer = {
+export type SkillGroup = {
   id: string;
   category: string;
-  chips: string[];
+  items: string[];
 };
 
-export type DetailField = {
-  k: string;
-  v: string;
-};
+export type ProjectKind = 'Systems' | 'Research' | 'Embedded';
 
 export type Project = {
   id: string;
   title: string;
-  tagline: string;
-  description: string;
+  kind: ProjectKind;
+  context: string;
+  period?: string;
+  summary: string;
+  highlights: string[];
   tech: string[];
-  status: string;
-  statusTone: 'live' | 'done' | 'wip';
   github?: string;
+  demo?: string;
+  /** Featured projects get the full write-up; the rest render as compact rows. */
   featured?: boolean;
-  detailFields?: DetailField[];
 };
 
-export type TelemetryField = {
-  k: string;
-  v: string;
-  unit?: string;
-  tone?: 'good' | 'default';
+export type ResearchItem = {
+  id: string;
+  title: string;
+  org: string;
+  period: string;
+  bullets: string[];
 };
 
 export type ExperienceItem = {
@@ -67,19 +54,30 @@ export type ExperienceItem = {
   description: string;
 };
 
-export type EducationItem = {
+export type Degree = {
   id: string;
-  badge: string;
   degree: string;
   school: string;
-  metrics: { value: string; label: string }[];
+  period: string;
+  status: string;
+  seniorProject?: { title: string; summary: string };
+  coursework?: string[];
+  notes?: string[];
+};
+
+export type Certification = {
+  title: string;
+  issuer: string;
+  date: string;
 };
 
 export type Content = {
   profile: Profile;
-  skills: SkillLayer[];
+  education: Degree[];
+  research: ResearchItem[];
   projects: Project[];
-  featuredTelemetry: TelemetryField[];
   experience: ExperienceItem[];
-  education: EducationItem[];
+  skills: SkillGroup[];
+  certifications: Certification[];
+  languages: { name: string; level: string }[];
 };

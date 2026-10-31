@@ -1,261 +1,421 @@
 {
   "profile": {
     "name": "Abolfazl Keshavarz",
-    "role": "Computer Science graduate · Software & systems engineer",
-    "eyebrow": "Systems console",
-    "headline": "Computer science graduate who ships complete systems — hardware to deployment.",
-    "accent": "complete systems",
-    "lede": "Backend services, Linux infrastructure, IoT hardware, and the networks that connect them. RadGard, a production vehicle GPS platform, was built solo end to end — tracker firmware to fleet dashboard.",
-    "terminalCmd": "whoami --systems",
-    "location": "Qazvin, IR",
-    "journey": "Qazvin, Iran → Genoa, Italy (MSc, 2026)",
-    "stats": [
-      { "value": "16.35", "unit": "/20", "label": "BSc GPA" },
-      { "value": "150", "unit": "+", "label": "Students taught" },
-      { "value": "10", "unit": "+", "label": "Systems shipped" },
-      { "value": "C1", "label": "English · IELTS 7.0" }
-    ],
+    "role": "Computer Scientist · Software & Systems Engineer",
+    "headline": "I build dependable systems, from embedded devices to production servers.",
+    "lede": "Computer Science graduate of the University of Guilan. I work across the whole stack — firmware, networks, backend services, interfaces and deployment — and I'm drawn to the questions underneath it: machine learning, its security, and how connected systems are designed.",
+    "location": "Qazvin, Iran",
     "email": "abolfazlkeshavarz1112@gmail.com",
     "github": "https://github.com/abolfazlkeshavarz",
-    "cvUrl": "/resume.pdf",
     "portrait": "/images/portrait.jpg",
     "aboutParagraphs": [
-      "I'm a Computer Science graduate from the University of Guilan and a software/IT engineer who works across the full depth of a system — embedded hardware and networking at the bottom, backend services and databases in the middle, web interfaces and deployment on top.",
-      "Most of what I build ends up in someone's hands: a production GPS-tracking platform for vehicles, a warranty system for a home-appliance business, a face-recognition attendance kiosk for a factory floor, a gym management system running in Persian. Alongside that, two years teaching programming to roughly 150 students and a digital-twin research review.",
-      "Next is an MSc in Genoa, with an eye toward robotics, AI, and research."
+      "My bachelor's years at the University of Guilan gave me a broad foundation — algorithms, operating systems, computer networks, databases and microprocessors — and a habit of understanding a system all the way down before building on it. I took part in an international systematic literature review on digital twin ecosystems, and finished with a senior project on deepfake detection.",
+      "Alongside the degree I built things people actually use: a GPS tracking platform, a real-time messaging service, a restaurant ordering platform, and attendance and management systems for local businesses. I like owning a system end to end, including the unglamorous parts — provisioning, backups, TLS and migrations.",
+      "I also taught. As a teaching assistant and later a programming instructor I worked with roughly 150 students, which taught me more about explaining ideas clearly than any course did.",
+      "My interests lie in AI, AI security and connected systems, and I keep looking for problems where those meet real engineering."
     ],
-    "tags": [
-      "Backend engineering",
-      "Linux / infra",
-      "Networking",
-      "IoT / hardware",
-      "Computer vision",
-      "Teaching",
-      "Self-hosted systems"
+    "researchInterests": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "AI Security",
+      "Digital Twin Ecosystems",
+      "Internet of Things",
+      "Computer Vision",
+      "Computer Networks"
     ]
   },
-
-  "skills": [
+  "education": [
     {
-      "id": "frontend",
-      "category": "Frontend",
-      "chips": ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "shadcn/ui", "MapLibre GL"]
-    },
-    {
-      "id": "backend",
-      "category": "Backend",
-      "chips": ["Go · Gin", "GORM", "Python", "FastAPI", "Django", "Node · Express", "REST", "WebSockets", "MQTT"]
-    },
-    {
-      "id": "data",
-      "category": "Data",
-      "chips": ["PostgreSQL", "MySQL", "SQLite", "MongoDB", "Redis", "SQLAlchemy"]
-    },
-    {
-      "id": "infra",
-      "category": "Infra / network",
-      "chips": ["Linux", "NGINX", "Docker", "Compose", "KVM / ESXi", "WireGuard", "TCP/IP", "SSL/TLS", "Let's Encrypt"]
-    },
-    {
-      "id": "hardware",
-      "category": "Hardware / IoT",
-      "chips": ["ESP32", "ESP8266", "ESP32-CAM", "Arduino", "SIM800C", "NEO-6M GPS", "MAX30100", "RFID"]
-    },
-    {
-      "id": "ai",
-      "category": "AI / vision",
-      "chips": ["Python", "OpenCV", "TensorFlow", "YOLO11", "Ultralytics", "Image classification"]
+      "id": "bsc",
+      "degree": "Bachelor of Science in Computer Science",
+      "school": "University of Guilan, Rasht, Iran",
+      "period": "Oct 2021 — Sep 2025",
+      "status": "Completed",
+      "seniorProject": {
+        "title": "Deepfake detection with the DF-Platter dataset",
+        "summary": "Investigated machine-learning approaches for detecting manipulated media, covering data preparation, model development and evaluation. Supervised within the Department of Computer Science."
+      },
+      "coursework": [
+        "Artificial Intelligence",
+        "Algorithms",
+        "Data Structures",
+        "Operating Systems",
+        "Computer Networks",
+        "Database Systems",
+        "Advanced Programming",
+        "Microprocessors",
+        "Principles of Computer Systems"
+      ],
+      "notes": [
+        "Researcher on a digital twin ecosystem study with an international team (2024 – 2025).",
+        "Teaching assistant for Introductory and Advanced Programming.",
+        "Microprocessor course project: an ESP32 body-vitals monitoring system."
+      ]
     }
   ],
-
+  "research": [
+    {
+      "id": "digital-twin",
+      "title": "Researcher, Digital Twin Ecosystem Design",
+      "org": "University of Guilan, Rasht, Iran",
+      "period": "Feb 2024 — Jun 2025",
+      "bullets": [
+        "Carried out data extraction, classification and analysis of digital twin frameworks as part of a systematic literature review.",
+        "Worked with an international research team on digital twin ecosystems: their architectures and the relationships between ecosystem stakeholders.",
+        "Contributed to the preparation of a comprehensive systematic literature review on the subject."
+      ]
+    }
+  ],
   "projects": [
     {
-      "id": "radgard",
-      "title": "RadGard",
-      "tagline": "Vehicle GPS tracking platform",
-      "description": "A complete Iranian fleet-tracking ecosystem for cars and motorcycles — from a GPS/GSM tracker unit through cellular telemetry to a live fleet map. Firmware, backend, dashboard and deployment all built solo; currently running as a real product.",
-      "tech": ["Go", "Gin", "MQTT", "PostgreSQL", "Redis", "WebSocket", "React", "TypeScript", "MapLibre GL", "C++", "Docker"],
-      "status": "Active in production",
-      "statusTone": "live",
-      "github": "https://github.com/abolfazlkeshavarz/GPSTracker",
-      "featured": true,
-      "detailFields": [
-        { "k": "Tracker hardware", "v": "ESP32 unit with NEO-6M GPS and a SIM800C GSM/GPRS modem, reporting over MQTT" },
-        { "k": "Backend", "v": "Go (Gin) · Paho MQTT ingest · PostgreSQL history + Redis latest-state cache · JWT auth · REST and WebSocket push" },
-        { "k": "Dashboard", "v": "React · TypeScript · Zustand · MapLibre GL over self-hosted OpenStreetMap tiles" },
-        { "k": "Deployment", "v": "Linux VPS · NGINX · Mosquitto broker · Docker · TileServer GL · SSL on a custom domain" }
-      ]
-    },
-    {
-      "id": "guarantee",
-      "title": "Guarantee Management System",
-      "tagline": "Enterprise warranty & repair platform",
-      "description": "Warranty lifecycle platform for a home-appliance business: guarantees created, approved, renewed and cancelled; technicians, customers, products, repairs and spare-part requests tracked across roles, with global search and invoice/repair-image uploads.",
-      "tech": ["Go", "Gin", "GORM", "PostgreSQL", "React", "TypeScript", "JWT / RBAC", "Docker"],
-      "status": "Deployed, in use",
-      "statusTone": "live",
-      "github": "https://github.com/abolfazlkeshavarz/guarantee-management-system",
-      "featured": false
-    },
-    {
-      "id": "attendance",
-      "title": "Personnel Attendance System",
-      "tagline": "Face-recognition attendance for a factory floor",
-      "description": "Staff clock in and out by face at a tablet kiosk that keeps working through network drops — recognition runs in the browser, not on a server. Pairs with an admin panel for duty descriptions and daily/weekly/monthly reporting, fully Persian and RTL with Jalali dates and Tehran time.",
-      "tech": ["Python", "FastAPI", "SQLAlchemy", "React", "TypeScript", "Tailwind", "Face recognition", "Excel export"],
-      "status": "Deployed, in use",
-      "statusTone": "live",
-      "github": "https://github.com/abolfazlkeshavarz/attendance-system",
-      "featured": false
-    },
-    {
-      "id": "gym",
-      "title": "Nosrati Gym Management",
-      "tagline": "Gym & corrective-movement centre system",
-      "description": "Persian, right-to-left public site plus admin panel for a gym and corrective-movement centre: memberships with printable cards, physician referral letters, subscription plans, coaches, weekly class schedules and articles, with Excel/CSV and print/PDF reporting.",
-      "tech": ["Node.js", "Express", "SQLite (node:sqlite)", "JWT", "bcrypt", "Docker", "NGINX"],
-      "status": "Deployed, in use",
-      "statusTone": "live",
-      "github": "https://github.com/abolfazlkeshavarz/gym-management-system",
-      "featured": false
+      "id": "cofferant",
+      "title": "Cofferant",
+      "kind": "Systems",
+      "context": "Restaurant ordering and management platform",
+      "period": "2024 — 2026",
+      "summary": "A multi-tenant platform that takes a restaurant from a QR-code menu to online ordering, order tracking and a live kitchen view.",
+      "highlights": [
+        "Django-based platform with QR-code menus, online ordering, order tracking and live kitchen operations.",
+        "Restaurant management, payment integration, coupon handling and subscription licensing.",
+        "Multi-tenant deployment with tenant data isolation, Docker, Nginx, automated backups, and VPS provisioning and migration scripts."
+      ],
+      "tech": [
+        "Python",
+        "Django",
+        "Docker",
+        "Nginx",
+        "Linux",
+        "Multi-tenancy"
+      ],
+      "featured": true
     },
     {
       "id": "chatters",
       "title": "Chatters",
-      "tagline": "Self-hosted real-time messaging platform",
-      "description": "A messaging platform built to be run on your own server rather than someone else's: Go backend, web client, and a documented VPS deployment path with Compose profiles for HTTP and HTTPS, nginx in front, and a phase-based database migration workflow.",
-      "tech": ["Go", "JavaScript", "PostgreSQL", "Docker Compose", "NGINX", "Makefile"],
-      "status": "In active development",
-      "statusTone": "wip",
+      "kind": "Systems",
+      "context": "Real-time messaging platform",
+      "period": "2026",
+      "summary": "A messaging service with direct and group conversations, built to run on a server I administer myself.",
+      "highlights": [
+        "Direct and group messaging, persistent storage, read-status tracking, replies and media sharing.",
+        "Go and Gin backend with WebSockets and JWT authentication; React front end; PostgreSQL.",
+        "Deployed on a Linux VPS with systemd and Nginx, with HTTPS and PostgreSQL configured by hand."
+      ],
+      "tech": [
+        "Go",
+        "Gin",
+        "React",
+        "PostgreSQL",
+        "WebSockets",
+        "JWT",
+        "systemd",
+        "Nginx"
+      ],
       "github": "https://github.com/abolfazlkeshavarz/Chatters",
-      "featured": false
+      "featured": true
     },
     {
-      "id": "plant",
-      "title": "Plant Disease Classification",
-      "tagline": "YOLO11x fungal-infection classifier",
-      "description": "Binary image classifier separating fungal-infected plants from healthy ones, built on Ultralytics YOLO11x over a custom dataset as part of a research effort into deep learning for agricultural disease detection. Reached 100% top-1 accuracy on the held-out test set.",
-      "tech": ["Python", "YOLO11x", "Ultralytics", "Jupyter", "Computer vision"],
-      "status": "Research complete",
-      "statusTone": "done",
-      "github": "https://github.com/abolfazlkeshavarz/Classification-of-plant-infection",
-      "featured": false
+      "id": "radgard",
+      "title": "RadGard",
+      "kind": "Systems",
+      "context": "Vehicle GPS tracking platform",
+      "period": "2026",
+      "summary": "A fleet-tracking system for cars and motorcycles, from the tracker unit through cellular telemetry to a live map, deployed on its own domain.",
+      "highlights": [
+        "Tracker hardware: ESP32 with a NEO-6M GPS receiver and SIM800C GSM/GPRS modem reporting over MQTT.",
+        "Backend in Go with MQTT ingestion, PostgreSQL history, a Redis latest-state cache, JWT auth, and REST plus WebSocket push.",
+        "React and TypeScript dashboard on MapLibre GL over self-hosted OpenStreetMap tiles."
+      ],
+      "tech": [
+        "Go",
+        "MQTT",
+        "PostgreSQL",
+        "Redis",
+        "React",
+        "TypeScript",
+        "MapLibre GL",
+        "ESP32",
+        "C++"
+      ],
+      "github": "https://github.com/abolfazlkeshavarz/GPSTracker",
+      "featured": true
     },
     {
       "id": "deepfake",
-      "title": "DeepFakeDetector",
-      "tagline": "Multi-face deepfake detection",
-      "description": "Bachelor's final project: a computer-vision pipeline that classifies images as real or AI-generated, trained and evaluated on the DF-Platter multi-face deepfake dataset.",
-      "tech": ["Python", "OpenCV", "TensorFlow", "Machine learning"],
-      "status": "Research complete",
-      "statusTone": "done",
+      "title": "Deepfake Detection",
+      "kind": "Research",
+      "context": "Bachelor's senior project",
+      "period": "2025",
+      "summary": "A machine-learning study of how to detect manipulated media on the multi-face DF-Platter dataset.",
+      "highlights": [
+        "Data preparation, model development and evaluation on DF-Platter.",
+        "Classifies images as real or AI-generated using Python, OpenCV and TensorFlow."
+      ],
+      "tech": [
+        "Python",
+        "OpenCV",
+        "TensorFlow",
+        "Machine learning"
+      ],
       "github": "https://github.com/abolfazlkeshavarz/DFDetector",
-      "featured": false
+      "featured": true
     },
     {
       "id": "vitals",
-      "title": "Body Vitals Monitor",
-      "tagline": "ESP32 vitals station with an HTTP API",
-      "description": "An ESP32 driving two I²C medical sensors at once — MAX30205 for body temperature, MAX30100 for heart rate and SpO₂ — with a 0.96\" OLED readout and a small JSON API (/api/vitals, /api/temp, /api/info) so other systems can pull the measurements.",
-      "tech": ["C++", "ESP32", "MAX30205", "MAX30100", "I²C", "OLED", "HTTP API"],
-      "status": "Built & documented",
-      "statusTone": "done",
-      "github": "https://github.com/abolfazlkeshavarz/Accurate-Body-Vitals-Measuring",
-      "featured": false
+      "title": "IoT Body Vitals Monitoring",
+      "kind": "Embedded",
+      "context": "Microprocessors course project",
+      "period": "2025",
+      "summary": "ESP32 station measuring heart rate, SpO₂ and body temperature (MAX30100, MAX30205), with an HTTP API and a Python/Tkinter application that collects and stores the readings.",
+      "highlights": [],
+      "tech": [
+        "C++",
+        "ESP32",
+        "I²C",
+        "Python",
+        "Tkinter"
+      ],
+      "github": "https://github.com/abolfazlkeshavarz/Accurate-Body-Vitals-Measuring"
     },
     {
       "id": "oximeter",
       "title": "Live Health Monitor",
-      "tagline": "ESP8266 pulse oximeter with onboard web UI",
-      "description": "A standalone ESP8266 pulse oximeter: MAX30100 sensor, OLED display, and an onboard web server in AP mode that serves live BPM and SpO₂ readings refreshed every second — no internet connection or external app required.",
-      "tech": ["C++", "ESP8266", "MAX30100", "Web server", "AP mode"],
-      "status": "Built & documented",
-      "statusTone": "done",
-      "github": "https://github.com/abolfazlkeshavarz/Oximeter-using-ESP8266",
-      "featured": false
+      "kind": "Embedded",
+      "context": "Personal project",
+      "period": "2025",
+      "summary": "A standalone ESP8266 pulse oximeter with a MAX30100 sensor and OLED display, serving live heart-rate and SpO₂ readings from its own web server.",
+      "highlights": [],
+      "tech": [
+        "C++",
+        "ESP8266",
+        "MAX30100",
+        "OLED"
+      ],
+      "github": "https://github.com/abolfazlkeshavarz/Oximeter-using-ESP8266"
     },
     {
-      "id": "rfid",
-      "title": "RFID Attendance System",
-      "tagline": "Card-based attendance logger",
-      "description": "An earlier take on the attendance problem before face recognition: an RFID reader on a microcontroller logging card taps as check-in and check-out events.",
-      "tech": ["C++", "RFID", "Microcontroller"],
-      "status": "Built",
-      "statusTone": "done",
-      "github": "https://github.com/abolfazlkeshavarz/RFID-Attendance-System",
-      "featured": false
+      "id": "guarantee",
+      "title": "Guarantee Management System",
+      "kind": "Systems",
+      "context": "Warranty and repair platform",
+      "summary": "Warranty lifecycle for a home-appliance business: roles, technicians, repairs, spare-part requests and global search, with Go, Gin, GORM, PostgreSQL and React.",
+      "highlights": [],
+      "tech": [
+        "Go",
+        "Gin",
+        "GORM",
+        "PostgreSQL",
+        "React",
+        "RBAC"
+      ],
+      "github": "https://github.com/abolfazlkeshavarz/guarantee-management-system"
+    },
+    {
+      "id": "attendance",
+      "title": "Personnel Attendance System",
+      "kind": "Systems",
+      "context": "Face-recognition attendance kiosk",
+      "summary": "Staff clock in by face at a tablet kiosk; recognition runs in the browser so it keeps working when the network drops. FastAPI backend, React front end, Persian RTL with Jalali dates.",
+      "highlights": [],
+      "tech": [
+        "FastAPI",
+        "SQLAlchemy",
+        "React",
+        "TypeScript",
+        "Computer vision"
+      ],
+      "github": "https://github.com/abolfazlkeshavarz/attendance-system"
+    },
+    {
+      "id": "gym",
+      "title": "Gym Management System",
+      "kind": "Systems",
+      "context": "Memberships, schedules and reports",
+      "summary": "Persian right-to-left site and admin panel for a gym: memberships with printable cards, plans, coaches, class schedules and Excel/PDF reports. Node.js, Express and SQLite.",
+      "highlights": [],
+      "tech": [
+        "Node.js",
+        "Express",
+        "SQLite",
+        "JWT",
+        "Docker",
+        "Nginx"
+      ],
+      "github": "https://github.com/abolfazlkeshavarz/gym-management-system"
+    },
+    {
+      "id": "plant",
+      "title": "Plant Infection Classification",
+      "kind": "Research",
+      "context": "Deep-learning study",
+      "summary": "A YOLO11x binary classifier separating fungal-infected plants from healthy ones on a custom dataset, reaching 100% top-1 accuracy on the held-out test set.",
+      "highlights": [],
+      "tech": [
+        "Python",
+        "Ultralytics YOLO11",
+        "Computer vision"
+      ],
+      "github": "https://github.com/abolfazlkeshavarz/Classification-of-plant-infection"
     }
   ],
-
-  "featuredTelemetry": [
-    { "k": "Latitude", "v": "37.2809° N" },
-    { "k": "Longitude", "v": "49.5832° E" },
-    { "k": "Speed", "v": "54", "unit": "km/h" },
-    { "k": "Satellites", "v": "9", "unit": "locked" },
-    { "k": "Signal (CSQ)", "v": "23", "unit": "/31" },
-    { "k": "Battery", "v": "91", "unit": "%" },
-    { "k": "Ignition", "v": "ON", "tone": "good" },
-    { "k": "Operator", "v": "MCI" }
-  ],
-
   "experience": [
     {
       "id": "e1",
       "role": "Programming Instructor",
       "org": "Poulstar",
       "period": "Oct 2024 — Sep 2025",
-      "description": "Taught electronics, Python, programming fundamentals and Django to roughly 150 students; several worked toward CS50 Python certification."
+      "description": "Taught electronics, Python, programming fundamentals and Django to roughly 150 students, several of whom went on towards CS50 Python certification."
     },
     {
       "id": "e2",
-      "role": "Researcher — Digital Twin Ecosystem Design",
-      "org": "University of Guilan",
-      "period": "Feb 2024 — Jun 2025",
-      "description": "Systematic literature review plus framework and standards analysis, working toward a digital-twin ecosystem architecture."
-    },
-    {
-      "id": "e3",
       "role": "Website Assistant",
       "org": "Bon Asia",
       "period": "Aug 2024 — Feb 2025",
-      "description": "Website management and day-to-day web technical support."
+      "description": "Website management and day-to-day technical support."
+    },
+    {
+      "id": "e3",
+      "role": "Teaching Assistant, Advanced Programming",
+      "org": "University of Guilan",
+      "period": "Winter 2024",
+      "description": "Ran lab sessions and reviewed student code."
     },
     {
       "id": "e4",
-      "role": "Teaching Assistant — Advanced & Introductory Programming",
+      "role": "Teaching Assistant, Introduction to Programming",
       "org": "University of Guilan",
-      "period": "Fall 2023 — Winter 2024",
-      "description": "Supported two programming courses over consecutive terms, running lab sessions and reviewing student code."
+      "period": "Fall 2023",
+      "description": "Supported first-year students through their first programming course."
     },
     {
       "id": "e5",
-      "role": "Hardware / Power Supply Technician",
+      "role": "Hardware and Power Supply Technician",
       "org": "Pardis PC",
       "period": "Oct 2021 — Sep 2022",
-      "description": "Diagnostics and repair on computer hardware and power supplies."
+      "description": "Diagnostics and repair of computer hardware and power supplies."
     }
   ],
-
-  "education": [
+  "skills": [
     {
-      "id": "bsc",
-      "badge": "BSc · Completed 2025",
-      "degree": "Computer Science",
-      "school": "University of Guilan, Rasht, Iran",
-      "metrics": [
-        { "value": "16.35", "label": "Overall GPA /20" },
-        { "value": "17.0", "label": "Final 65 credits /20" }
+      "id": "lang",
+      "category": "Programming languages",
+      "items": [
+        "Python",
+        "Go",
+        "C / C++ (embedded)",
+        "Bash"
       ]
     },
     {
-      "id": "msc",
-      "badge": "MSc · Planned, Fall 2026/27",
-      "degree": "Computer Science",
-      "school": "University of Genoa, Italy",
-      "metrics": [
-        { "value": "Robotics", "label": "Focus area" },
-        { "value": "AI / research", "label": "Focus area" }
+      "id": "web",
+      "category": "Backend and web",
+      "items": [
+        "Django",
+        "Gin",
+        "REST APIs",
+        "WebSockets",
+        "JWT authentication",
+        "React",
+        "HTML",
+        "CSS"
       ]
+    },
+    {
+      "id": "data",
+      "category": "Databases",
+      "items": [
+        "PostgreSQL",
+        "MySQL",
+        "SQLite",
+        "MongoDB"
+      ]
+    },
+    {
+      "id": "ai",
+      "category": "AI and data science",
+      "items": [
+        "TensorFlow",
+        "OpenCV",
+        "Machine learning",
+        "Computer vision",
+        "Data pre-processing and analysis"
+      ]
+    },
+    {
+      "id": "iot",
+      "category": "Embedded and IoT",
+      "items": [
+        "ESP32",
+        "ESP8266",
+        "Arduino",
+        "Sensor integration",
+        "HTTP-based communication"
+      ]
+    },
+    {
+      "id": "infra",
+      "category": "Networking and infrastructure",
+      "items": [
+        "TCP/IP",
+        "Nginx",
+        "Linux administration",
+        "VPS deployment",
+        "SSL/TLS",
+        "KVM and ESXi",
+        "Network+ and LPIC-1 knowledge"
+      ]
+    },
+    {
+      "id": "tools",
+      "category": "Tools",
+      "items": [
+        "Git and GitHub",
+        "Docker",
+        "systemd",
+        "LaTeX"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Supervised Machine Learning: Regression and Classification",
+      "issuer": "Coursera",
+      "date": "Sep 2023"
+    },
+    {
+      "title": "Python for Data Science, AI & Development",
+      "issuer": "Coursera",
+      "date": "Aug 2023"
+    },
+    {
+      "title": "Data Collection and Processing with Python",
+      "issuer": "Coursera",
+      "date": "Jun 2023"
+    },
+    {
+      "title": "Python Project: Software Engineering and Image Manipulation",
+      "issuer": "Coursera",
+      "date": "May 2023"
+    },
+    {
+      "title": "Introduction to Artificial Intelligence (AI)",
+      "issuer": "Coursera",
+      "date": "May 2023"
+    },
+    {
+      "title": "Python 3 Programming",
+      "issuer": "Coursera",
+      "date": "Apr 2023"
+    }
+  ],
+  "languages": [
+    {
+      "name": "Persian",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "Advanced"
     }
   ]
 }
