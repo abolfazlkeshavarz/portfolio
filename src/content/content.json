@@ -22,7 +22,8 @@
       "Internet of Things",
       "Computer Vision",
       "Computer Networks"
-    ]
+    ],
+    "phone": "+98 990 460 5727"
   },
   "education": [
     {
@@ -87,7 +88,8 @@
         "Linux",
         "Multi-tenancy"
       ],
-      "featured": true
+      "featured": true,
+      "demo": "https://cofferant.ir"
     },
     {
       "id": "chatters",
@@ -112,7 +114,8 @@
         "Nginx"
       ],
       "github": "https://github.com/abolfazlkeshavarz/Chatters",
-      "featured": true
+      "featured": true,
+      "demo": "https://chat.abolfazl.fun"
     },
     {
       "id": "radgard",
@@ -138,7 +141,8 @@
         "C++"
       ],
       "github": "https://github.com/abolfazlkeshavarz/GPSTracker",
-      "featured": true
+      "featured": true,
+      "demo": "https://gps.abolfazl.fun"
     },
     {
       "id": "deepfake",

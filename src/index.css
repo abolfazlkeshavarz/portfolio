@@ -1,16 +1,17 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-paper: #fbfaf6;
-  --color-paper-2: #f3f1ea;
-  --color-rule: #dedad0;
-  --color-rule-soft: #ebe8de;
-  --color-ink: #1c2026;
-  --color-ink-2: #454c57;
-  --color-ink-3: #6f7681;
-  --color-accent: #1f3f73;
-  --color-accent-soft: #e6ecf6;
-  --color-mark: #8a3b2e;
+  --color-paper: #f5f7fa;
+  --color-paper-2: #eceff4;
+  --color-card: #ffffff;
+  --color-rule: #d8dee8;
+  --color-rule-soft: #e5e9f0;
+  --color-ink: #0f172a;
+  --color-ink-2: #334155;
+  --color-ink-3: #64748b;
+  --color-accent: #1e3a6e;
+  --color-accent-soft: #e6edf8;
+  --color-mark: #0f766e;
 
   --font-serif: 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
   --font-sans: 'Inter', -apple-system, 'Segoe UI', sans-serif;
@@ -20,7 +21,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 4.5rem;
+    scroll-padding-top: 7rem;
     background-color: var(--color-paper);
     color-scheme: light;
   }
@@ -68,13 +69,17 @@
 @layer components {
   .section {
     display: grid;
-    gap: 1.25rem 3rem;
-    padding: 3.5rem 0;
+    gap: 1rem 3rem;
+    padding: 2.5rem 0;
     border-top: 1px solid var(--color-rule);
   }
 
   @media (min-width: 820px) {
+    html {
+      scroll-padding-top: 5rem;
+    }
     .section {
+      padding: 3.5rem 0;
       grid-template-columns: 180px minmax(0, 1fr);
     }
     .section-label {
@@ -93,6 +98,28 @@
     color: var(--color-ink-3);
   }
 
+  @media (max-width: 819px) {
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--color-accent);
+    }
+    .section-label::before {
+      content: '';
+      width: 1.25rem;
+      height: 2px;
+      background: var(--color-accent);
+    }
+  }
+
+  .card {
+    background: var(--color-card);
+    border: 1px solid var(--color-rule);
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.04);
+  }
+
   .link {
     color: var(--color-accent);
     text-decoration: underline;
@@ -109,8 +136,8 @@
     line-height: 1;
     padding: 0.38rem 0.6rem;
     border-radius: 999px;
-    background-color: var(--color-paper-2);
-    border: 1px solid var(--color-rule-soft);
+    background-color: var(--color-card);
+    border: 1px solid var(--color-rule);
     color: var(--color-ink-2);
   }
 
@@ -123,13 +150,19 @@
     padding: 0.6rem 1.05rem;
     border-radius: 6px;
     border: 1px solid var(--color-rule);
-    background-color: #fff;
+    background-color: var(--color-card);
     color: var(--color-ink);
     text-decoration: none;
     transition:
       border-color 0.15s,
       background-color 0.15s,
       color 0.15s;
+  }
+  @media (max-width: 539px) {
+    .btn {
+      justify-content: center;
+      min-height: 2.75rem;
+    }
   }
   .btn:hover {
     border-color: var(--color-accent);
@@ -141,8 +174,8 @@
     color: #fff;
   }
   .btn-primary:hover {
-    background-color: #17325c;
-    border-color: #17325c;
+    background-color: #15305c;
+    border-color: #15305c;
     color: #fff;
   }
 

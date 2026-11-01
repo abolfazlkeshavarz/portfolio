@@ -6,6 +6,8 @@ export type Profile = {
   /** Short city label shown under the name. */
   location: string;
   email: string;
+  /** Shown as a tel: link in Contact. */
+  phone?: string;
   github: string;
   linkedin?: string;
   cvUrl?: string;

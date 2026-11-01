@@ -4,10 +4,15 @@ import { Section } from './Section';
 function Links({ project }: { project: Project }) {
   if (!project.github && !project.demo) return null;
   return (
-    <span className="flex gap-4 text-[0.88rem]">
+    <span className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.88rem]">
       {project.demo ? (
-        <a className="link" href={project.demo} target="_blank" rel="noopener noreferrer">
-          Live demo
+        <a
+          className="inline-flex items-center gap-1 rounded-md bg-accent px-3 py-1.5 font-medium text-white no-underline transition-colors hover:bg-[#15305c]"
+          href={project.demo}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Live demo <span aria-hidden="true">↗</span>
         </a>
       ) : null}
       {project.github ? (
@@ -21,12 +26,12 @@ function Links({ project }: { project: Project }) {
 
 function Featured({ project }: { project: Project }) {
   return (
-    <article className="border-b border-rule-soft py-9 first:pt-0 last:border-b-0">
+    <article className="card p-5 sm:p-7">
       <p className="m-0 text-[0.76rem] font-semibold uppercase tracking-[0.12em] text-mark">
         {project.kind}
         {project.period ? <span className="text-ink-3"> · {project.period}</span> : null}
       </p>
-      <div className="mt-2 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+      <div className="mt-2 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
         <h3 className="m-0 text-[1.45rem] font-semibold">{project.title}</h3>
         <Links project={project} />
       </div>
@@ -73,9 +78,11 @@ export function Projects({ projects }: { projects: Project[] }) {
 
   return (
     <Section id="projects" title="Selected projects">
-      {featured.map((project) => (
-        <Featured key={project.id} project={project} />
-      ))}
+      <div className="grid gap-5">
+        {featured.map((project) => (
+          <Featured key={project.id} project={project} />
+        ))}
+      </div>
 
       <h3 className="mb-2 mt-10 font-sans text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-ink-3">
         Further work
