@@ -26,8 +26,8 @@ export function Intro({ profile }: { profile: Profile }) {
         </p>
         <p className="mb-0 mt-5 max-w-[58ch] text-[0.98rem] text-ink-2 md:mt-6 md:text-[1.02rem]">{profile.lede}</p>
 
-        <div className="mt-7 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap md:mt-8">
-          <a className="btn btn-primary col-span-2 sm:col-auto" href={`mailto:${profile.email}`}>
+        <div className="mt-7 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap md:mt-8">
+          <a className="btn btn-primary" href={`mailto:${profile.email}`}>
             Email me
           </a>
           <a className="btn" href={profile.github} target="_blank" rel="noopener noreferrer">
