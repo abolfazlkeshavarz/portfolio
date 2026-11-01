@@ -9,14 +9,10 @@ export default defineConfig({
     // loopback connections to the IPv6 address can hang instead of refusing.
     host: '127.0.0.1',
     port: 5173,
-  },
-  build: {
-    rollupOptions: {
-      output: {
-        // three.js is only needed for the hero field; keeping it in its own
-        // chunk lets the rest of the page paint without waiting on it.
-        manualChunks: { three: ['three'] },
-      },
+    // `npm run dev:api` serves content, uploads and the /aboli API on 8787.
+    proxy: {
+      '/api': 'http://127.0.0.1:8787',
+      '/uploads': 'http://127.0.0.1:8787',
     },
   },
 });

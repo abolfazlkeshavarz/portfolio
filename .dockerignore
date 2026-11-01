@@ -9,3 +9,6 @@ dist-image
 .vscode
 .idea
 README.md
+
+.data
+.env.local

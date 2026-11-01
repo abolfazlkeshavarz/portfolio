@@ -6,12 +6,23 @@ services:
     image: abolfazl-portfolio:${IMAGE_TAG:-latest}
     container_name: abolfazl-portfolio
     restart: unless-stopped
+    environment:
+      # Control panel at /aboli. The panel is disabled (and says so) unless
+      # both are set and the password is at least 10 characters.
+      ADMIN_USER: ${ADMIN_USER:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+    volumes:
+      # Edited content, uploaded photos and backups. Survives `make deploy`.
+      - portfolio-data:/data
     # Published on loopback only: the host's nginx terminates TLS and proxies
     # here, so this port is never reachable from the internet directly.
     ports:
-      - '127.0.0.1:${APP_HTTP_PORT:-8093}:80'
+      - '127.0.0.1:${APP_HTTP_PORT:-8093}:8080'
     logging:
       driver: json-file
       options:
         max-size: '10m'
         max-file: '3'
+
+volumes:
+  portfolio-data:

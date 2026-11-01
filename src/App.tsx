@@ -1,5 +1,4 @@
-import contentData from './content/content.json';
-import type { Content } from './types';
+import { useContent } from './content/useContent';
 import { Nav } from './components/Nav';
 import { Intro } from './components/Intro';
 import { About } from './components/About';
@@ -10,10 +9,8 @@ import { Experience } from './components/Experience';
 import { Skills } from './components/Skills';
 import { Contact } from './components/Contact';
 
-const content = contentData as Content;
-
 export function App() {
-  const { profile, education, research, projects, experience, skills, certifications, languages } = content;
+  const { profile, education, research, projects, experience, skills, certifications, languages } = useContent();
 
   return (
     <>

@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 SHELL := /bin/bash
 
-.PHONY: help setup dev build deploy up up-prebuilt down restart logs ps ssl images load-images clean
+.PHONY: help admin setup dev build deploy up up-prebuilt down restart logs ps ssl images load-images clean
 
 help: ## Show this help
 	@echo ""
@@ -21,6 +21,9 @@ dev: ## Run the Vite dev server locally (no Docker)
 
 build: ## Build the static site locally into dist/
 	@npm install && npm run build
+
+admin: ## Set or change the /aboli control panel username and password
+	@./scripts/set-admin.sh
 
 deploy: ## Build the image and start the site
 	@docker compose up -d --build

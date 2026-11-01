@@ -3,8 +3,10 @@
 A personal academic portfolio: a calm, paper-toned single page with serif
 headings, a CV-style section layout, and selected research and projects.
 
-Static site — React + TypeScript + Tailwind, built by Vite, served by nginx in a
-container. No database, no backend process in production.
+React + TypeScript + Tailwind, built by Vite, and served by a small dependency-free
+Node server in one container. The same server powers the **control panel at
+`/aboli`**, where you edit the whole site from the browser. Edits live in a
+Docker volume, so they survive redeploys.
 
 ---
 
@@ -29,47 +31,48 @@ npm run typecheck   # TypeScript only, no emit
 
 ## Editing the content
 
-**Everything on the page comes from one file: `src/content/content.json`.** No
-copy lives in a component. The shape is typed in `src/types.ts`, so a wrong key
-or a missing field fails the build rather than silently rendering nothing.
+### The control panel — `/aboli`
 
-| Section on the page | Key in `content.json` |
-| ------------------- | --------------------- |
-| Intro, About, Research interests | `profile` |
-| Education           | `education[]`         |
-| Research            | `research[]`          |
-| Selected projects   | `projects[]` (`"featured": true` gets the full write-up) |
-| Teaching & experience | `experience[]`      |
-| Skills & certificates | `skills[]`, `certifications[]`, `languages[]` |
-| Contact             | `profile.email`, `.github`, `.linkedin`, `.cvUrl` |
+Open `https://your-domain/aboli`, sign in, and edit everything: profile and
+photo, about text, education, research, projects (with live-demo and source
+links), experience, skills, certifications and languages. **Save** publishes
+instantly — no rebuild or redeploy.
 
-Two ways to edit it:
+- Login comes from `ADMIN_USER` / `ADMIN_PASSWORD` in `.env` (min 10 characters).
+  `make admin` sets or changes it; changing the password signs everyone out.
+- Sessions last 12 hours, use an HttpOnly + SameSite=Strict cookie, and five
+  wrong logins from one address lock it out for 15 minutes.
+- The panel saves a backup of the previous content on every save (last 30 kept
+  in the data volume) and has **Restore original content**, which resets to the
+  `src/content/content.json` that shipped with the build.
+- Photos are resized in the browser before upload.
+- If `ADMIN_USER` / `ADMIN_PASSWORD` are not set, the panel is disabled and the
+  public site is unaffected.
 
-1. **Directly** — open the JSON, change it, rebuild.
-2. **Through the Console Content Manager** — a private admin panel published
-   as a Claude Artifact (<https://claude.ai/artifact/WXHVtKRx5bT4bPiuAVQFr6>).
-   Its fields mirror `src/types.ts`. Edit items there, open
-   **Import / Export → Download content.json**, and drop the file over
-   `src/content/content.json`. If you edit the JSON by hand instead, use
-   **Choose content.json…** on the same tab to load it back into the panel so
-   the two don't drift apart.
+`src/content/content.json` is now only the **starting content**: the server copies
+it into the data volume the first time it runs. After that, the panel's copy is
+the live one, and edits to `content.json` only matter for a fresh volume or after
+**Restore original content**. The shape is typed in `src/types.ts`.
 
-   If you add a field to `src/types.ts`, add it to the panel's schema too.
+**Backing up your edits:** `docker run --rm -v portfolio_portfolio-data:/data -v "$PWD":/out alpine tar czf /out/portfolio-data.tgz -C /data .`
+(the volume name is prefixed with the compose project name; check `docker volume ls`).
 
-Content changes require a rebuild (`make deploy`, or `npm run build` locally) —
-the JSON is compiled into the bundle so the page paints instantly with no
-loading state and stays readable to search engines.
+### Running the panel locally
 
-### Photos
+```bash
+# terminal 1 — API + panel on :8787 (create .env.local with ADMIN_USER / ADMIN_PASSWORD first)
+npm run dev:api
+# terminal 2 — the site with hot reload; /api and /uploads are proxied to :8787
+npm run dev
+```
 
-Drop `portrait.jpg` and `about.jpg` into `public/images/` — see
-[`public/images/README.md`](public/images/README.md) for sizes and framing.
-Until they exist, each slot renders a labelled placeholder rather than a broken
-image, so you can deploy first and add photos later.
+Then open <http://127.0.0.1:5173/aboli>. Local data goes to `.data/` (gitignored).
 
-### CV
+### Photos and CV
 
-Put your PDF at `public/resume.pdf` (the path is `profile.cvUrl`).
+Upload a new portrait from the control panel (Profile → Upload new photo). The
+default lives at `public/images/portrait.jpg`. To offer a CV download, put the
+PDF at `public/resume.pdf` and set **CV link** to `/resume.pdf` in the panel.
 
 ---
 
@@ -139,6 +142,16 @@ hook installed by `make ssl` reloads nginx afterwards.
 ```bash
 cd /opt/portfolio
 git pull
+make deploy
+```
+
+The first time you deploy a version with the control panel on an existing
+server, also set the login and refresh the host vhost (it raises the upload
+limit):
+
+```bash
+make admin
+make ssl
 make deploy
 ```
 

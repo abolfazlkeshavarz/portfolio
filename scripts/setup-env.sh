@@ -16,6 +16,7 @@ if [[ -f .env ]]; then
 fi
 
 cp .env.example .env
+chmod 600 .env
 
 echo "==> Created .env"
 echo ""
@@ -23,4 +24,5 @@ echo "Edit it before deploying:"
 echo "  DOMAIN=            the hostname pointing at this server"
 echo "  LETSENCRYPT_EMAIL= where certificate expiry warnings go"
 echo "  APP_HTTP_PORT=     loopback port for this project (unique per project)"
+echo "  ADMIN_USER / ADMIN_PASSWORD   login for /aboli (or run: make admin)"
 echo ""

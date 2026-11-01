@@ -17,6 +17,9 @@
 # Supply the domain and email up front so nothing is prompted:
 #   DOMAIN=abolfazlkeshavarz.com LETSENCRYPT_EMAIL=you@example.com ./scripts/bootstrap-vps.sh
 #
+# It also asks for the login to the /aboli control panel (or set ADMIN_USER and
+# ADMIN_PASSWORD up front).
+#
 # If this is not the first project on this VPS, also set a free local port
 # (must be unique per project — default 8093):
 #   APP_HTTP_PORT=8094 DOMAIN=... LETSENCRYPT_EMAIL=... ./scripts/bootstrap-vps.sh
@@ -112,6 +115,11 @@ if [[ -n "${LETSENCRYPT_STAGING:-}" ]]; then
   sed -i "s|^LETSENCRYPT_STAGING=.*|LETSENCRYPT_STAGING=${LETSENCRYPT_STAGING}|" .env
 fi
 
+# ------------------------------------------------- control panel login (/aboli)
+# Pass ADMIN_USER / ADMIN_PASSWORD up front to skip the prompts.
+./scripts/set-admin.sh --no-restart
+chmod 600 .env
+
 if [[ "$REAL_USER" != "root" ]]; then
   chown "$REAL_USER":"$REAL_USER" .env
 fi
@@ -135,3 +143,4 @@ make ssl
 
 echo ""
 echo "Site is up at https://${DOMAIN}"
+echo "Control panel:  https://${DOMAIN}/aboli"
